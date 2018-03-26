@@ -3,6 +3,6 @@ class Api::BaseController < ApplicationController
 
   def render_error_response(error)
     Rails.logger.debug("========: #{error.inspect}")
-    render json: ApiErrorsSerializer.new(error), status: 200
+    render json: ApiErrorSerializer.new(error), status: :unprocessable_entity
   end
 end

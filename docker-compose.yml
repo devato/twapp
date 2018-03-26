@@ -44,8 +44,6 @@ services:
     build: ./client
     command: yarn start
     entrypoint: ./docker/entrypoints/client.sh
-    depends_on:
-      - api
     volumes:
       - ./client:/home/client
     environment:
