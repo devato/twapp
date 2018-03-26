@@ -1,4 +1,4 @@
-class ApiErrorsSerializer < ActiveModel::Serializer
+class ApiErrorSerializer
   include FastJsonapi::ObjectSerializer
   attributes :status, :code, :message
 end

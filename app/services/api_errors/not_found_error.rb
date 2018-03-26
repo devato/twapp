@@ -1,6 +1,6 @@
 module ApiErrors
   class NotFoundError < ApiErrors::BaseError
-    class TopicNotFoundError < ApiErrors::NotFoundError
+    class TopicNotFound < ApiErrors::NotFoundError
 
     end
   end
