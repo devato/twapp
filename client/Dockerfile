@@ -3,13 +3,13 @@ FROM node:9.7.1
 # app home
 ENV APP_HOME=/home/client
 
-RUN mkdir $APP_HOME
+# Install node_modules with yarn
+ADD package.json yarn.lock /tmp/
+RUN cd /tmp && yarn -
+RUN mkdir $APP_HOME && cd $APP_HOME && ln -s /tmp/node_modules
 
 # Node base template
 WORKDIR $APP_HOME
-
-COPY package.json yarn.lock ./
-RUN yarn --pure-lockfile
 
 ADD . $APP_HOME
 
