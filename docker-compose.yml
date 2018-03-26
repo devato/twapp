@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 services:
 
@@ -14,7 +14,7 @@ services:
     ports:
       - 8080:8080
 
-  api:
+  api: &api_base
     build: .
     command: bundle exec puma -C config/puma.rb
     entrypoint: ./docker/entrypoints/api.sh
@@ -27,6 +27,11 @@ services:
       - '.env'
     stdin_open: true
     tty: true
+
+  crono:
+    <<: *api_base
+    entrypoint: './docker/entrypoints/crono.sh'
+    command: bundle exec crono
 
   client:
     build: ./client

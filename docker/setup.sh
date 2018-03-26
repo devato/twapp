@@ -20,15 +20,6 @@ chdir APP_ROOT do
   system! 'gem install bundler --conservative'
   system('bundle check') || system!('bundle install')
 
-  puts "\n== Copying sample files =="
-  unless File.exist?('config/database.yml')
-    cp 'docker/templates/database.yml.docker', 'config/database.yml'
-  end
-
-  unless File.exist?('config/puma.rb')
-    cp 'docker/templates/puma.rb.docker', 'config/puma.rb'
-  end
-
   cp '.env.example', '.env' unless File.exist?('.env')
 
   puts "\n== Preparing database =="
