@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './assets/styles/css/index.css';
+import './assets/styles/index.css';
 import Loading from './components/Loading';
 import TopicSelect from './components/TopicSelect';
 import { Segment } from 'semantic-ui-react';
@@ -13,9 +13,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="ui container">
-          <h1>TweetBeat</h1>
+      <div className="app">
+        <div className="ui container app__container">
+          <h1 className="app__heading">TweetBeat</h1>
           <div className="ui grid">
             <div className="four wide column">
               <Segment color="grey">
