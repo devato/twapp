@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+
+  nginx:
+    image: bitnami/nginx:1.12
+    volumes:
+      - ./docker/templates/nginx:/bitnami/nginx/conf/vhosts
+    depends_on:
+      - api
+      - client
+    environment:
+      - VIRTUAL_PORT=8080
+    ports:
+      - 8080:8080
+
+  api:
+    build: .
+    command: bundle exec puma -C config/puma.rb
+    entrypoint: ./docker/entrypoints/api.sh
+    volumes:
+      - bundle_cache:/bundle
+      - .:/home/api
+    depends_on:
+      - client
+    env_file:
+      - '.env'
+    stdin_open: true
+    tty: true
+
+  client:
+    build: ./client
+    command: yarn start
+    entrypoint: ./docker/entrypoints/client.sh
+    volumes:
+      - ./client:/home/client
+    environment:
+      NODE_ENV: development
+    env_file:
+      - '.env'
+
+volumes:
+  bundle_cache:
