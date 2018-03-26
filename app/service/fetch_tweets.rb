@@ -5,7 +5,6 @@ class FetchTweets
   def initialize(keep = 10)
     @keep = keep
     @new_tweets = []
-    prune_tweets
   end
 
   def call
@@ -14,13 +13,13 @@ class FetchTweets
       TWITTER_REST_CLIENT.search(topic.name, lang: 'en', result_type: 'recent')
                          .take(10).collect do |tweet|
         next unless tweet.text? && tweet.user?
-        @new_tweets << Tweet.create!({
-          text: tweet.text,
-          full_text: tweet.full_text,
-          username: tweet.user.screen_name,
-          topic: topic,
-          created_at: tweet.created_at,
-        })
+        @new_tweets << Tweet.where(tweet_id: tweet.id).first_or_create do |t|
+          t.text = tweet.text
+          t.full_text = tweet.full_text
+          t.username = tweet.user.screen_name
+          t.topic = topic
+          t.created_at = tweet.created_at
+        end
       end
     end
     OpenStruct.new(success?: true, new_tweets: @new_tweets, error: nil)

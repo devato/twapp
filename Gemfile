@@ -5,11 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'crono'
 gem 'fast_jsonapi'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.5'
 gem 'rubocop'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'sqlite3'
 gem 'twitter'
 
@@ -25,4 +26,7 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'ffaker'
+  gem 'shoulda-matchers'
 end
