@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'fast_jsonapi'
+gem 'friendly_id', '~> 5.1.0'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.5'
 gem 'rubocop'

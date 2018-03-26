@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
-  root to: 'api/twitter#index'
-
   namespace :api do
-    resources :twitter
+    root to: 'tweets#list'
+    resources :tweets, only: [] do
+      collection do
+        get '/' => 'tweets#list', as: :no_topic_list
+        get ':topic_id' => 'tweets#list', as: :list
+        get ':topic_id/limit/:limit' => 'tweets#list', as: :limit_list
+      end
+    end
   end
 end

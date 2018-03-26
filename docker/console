@@ -2,4 +2,4 @@
 
 set -ex
 
-docker-compose exec api bundle exec rails c
+docker-compose exec api rails c

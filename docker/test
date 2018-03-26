@@ -3,4 +3,4 @@
 set -ex
 
 RSPEC_ARGS=$1
-docker-compose run -e RAILS_ENV=test api rspec $RSPEC_ARGS
+docker-compose run --rm -e RAILS_ENV=test api rspec $RSPEC_ARGS

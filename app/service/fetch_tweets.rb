@@ -2,8 +2,7 @@ class FetchTweets
 
   include BaseService
 
-  def initialize(keep = 10)
-    @keep = keep
+  def initialize
     @new_tweets = []
   end
 
@@ -26,12 +25,6 @@ class FetchTweets
   rescue => e
     log_msg(e, :error)
     OpenStruct.new(success?: false, error: e.message)
-  end
-
-  private
-
-  def prune_tweets
-    Tweet.where.not(id: Tweet.most_recent(@keep)).destroy_all
   end
 
 end
