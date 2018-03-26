@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :api do
+    root to: 'tweets#list'
+    resources :tweets, only: [] do
+      collection do
+        get '/' => 'tweets#list', as: :no_topic_list
+        get ':topic_id' => 'tweets#list', as: :list
+        get ':topic_id/limit/:limit' => 'tweets#list', as: :limit_list
+      end
+    end
+  end
 end

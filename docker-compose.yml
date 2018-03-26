@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 services:
 
@@ -6,32 +6,46 @@ services:
     image: bitnami/nginx:1.12
     volumes:
       - ./docker/templates/nginx:/bitnami/nginx/conf/vhosts
-    depends_on:
-      - api
-      - client
     environment:
       - VIRTUAL_PORT=8080
     ports:
       - 8080:8080
 
-  api:
+  api: &api_base
     build: .
     command: bundle exec puma -C config/puma.rb
     entrypoint: ./docker/entrypoints/api.sh
     volumes:
       - bundle_cache:/bundle
       - .:/home/api
-    depends_on:
-      - client
+      - sqlite:/db
     env_file:
       - '.env'
     stdin_open: true
     tty: true
 
+  redis:
+    image: 'redis:3.2-alpine'
+    command: redis-server --requirepass supersecret
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'
+
+  sidekiq:
+    <<: *api_base
+    entrypoint: './docker/entrypoints/sidekiq.sh'
+    command: bundle exec sidekiq
+    ports: []
+    depends_on:
+      - redis
+
   client:
     build: ./client
     command: yarn start
     entrypoint: ./docker/entrypoints/client.sh
+    depends_on:
+      - api
     volumes:
       - ./client:/home/client
     environment:
@@ -40,4 +54,6 @@ services:
       - '.env'
 
 volumes:
+  sqlite:
   bundle_cache:
+  redis:

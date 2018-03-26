@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
+Topic.where({ name: 'Healthcare', active: true }).first_or_create
+Topic.where({ name: 'Nasa', active: true }).first_or_create
+Topic.where({ name: 'Open Source', active: true }).first_or_create
