@@ -8,8 +8,7 @@ RUN \
 RUN DEBIAN_FRONTEND=noninteractive \
   apt-get install -y \
   nodejs \
-  libpq-dev \
-  libsqlite3-dev
+  libpq-dev
 
 # Clean!
 RUN apt-get clean
@@ -20,7 +19,6 @@ ENV APP_HOME /home/api
 
 # Bundle installs with binstubs to our custom /bundle/bin volume path.
 # Let system use those stubs.
-RUN bundle config --global silence_root_warning 1
 ENV BUNDLE_PATH=/bundle \
     BUNDLE_BIN=/bundle/bin \
     GEM_HOME=/bundle
