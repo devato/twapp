@@ -1,6 +1,6 @@
-# Twapp
+# Twitter React/Rails
 
-# Setup
+## Setup
 
 ```
 $ git clone git@github.com:devato/twapp.git
@@ -43,7 +43,7 @@ Go to your localhost or docker machine IP at port: 8080
 Ie. http://localhost:8080
 ```
 
-# Services
+## Services
 
 | Service  | Info |
 | ------------- | ------------- |
@@ -54,7 +54,7 @@ Ie. http://localhost:8080
 | `sidekiq`  | background process worker service that run fetching/pruning jobs |
 | `nginx` | directs requests to the appropriate service |
 
-# Testing
+## Testing
 
 To test the Rails api there are some wrapper scripts in the `docker/` directory:
 
