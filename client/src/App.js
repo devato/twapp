@@ -5,7 +5,7 @@ import TopicSelect from './components/TopicSelect';
 import Home from './components/Home';
 import Tweets from './components/Tweets';
 
-import { Route, NavLink } from "react-router-dom";
+import { Route, Switch, NavLink } from "react-router-dom";
 
 class App extends React.Component {
 
@@ -50,8 +50,10 @@ class App extends React.Component {
               <TopicSelect topicsLoading={topicsLoading} topics={topics} />
             </div>
             <div className="twelve wide column">
-              <Route exact path="/" component={Home} />
-              <Route exact path="/:topicId" component={Tweets} />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/:topicId" component={Tweets} />
+              </Switch>
             </div>
           </div>
         </div>

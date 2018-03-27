@@ -10,6 +10,16 @@ class Tweets extends React.Component {
     loading: true,
   }
 
+  componentDidMount() {
+    this.setState({loading: true})
+    Client.getTweets(this.props.match.params.topicId, (results) => {
+      this.setState({
+        tweets: results.data,
+        loading: false,
+      })
+    })
+  }
+
   componentWillReceiveProps(newProps) {
     this.setState({loading: true})
     Client.getTweets(newProps.match.params.topicId, (results) => {
@@ -28,7 +38,8 @@ class Tweets extends React.Component {
           <Loading />
         ) : (
           <Segment className="tweets-wrapper">
-            <h3>#{this.props.match.params.topicId}</h3>
+            <h2>#{this.props.match.params.topicId}</h2>
+            <hr/>
             <List divided relaxed>
               {tweets.map((tweet, i) => {
                 return (
