@@ -10,6 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 0) do
+=======
 ActiveRecord::Schema.define(version: 20180326164312) do
 
   # These are extensions that must be enabled in order to support this database
@@ -46,5 +49,6 @@ ActiveRecord::Schema.define(version: 20180326164312) do
     t.datetime "updated_at", null: false
     t.index ["topic_id"], name: "index_tweets_on_topic_id"
   end
+>>>>>>> release/0.0.1
 
 end
