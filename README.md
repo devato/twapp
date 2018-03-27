@@ -1,5 +1,9 @@
 # Twitter React/Rails
 
+Rails app with a React frontend in the `/client` directory. @tmartin314
+
+https://twapp.staig.me
+
 ## Setup
 
 ```
@@ -51,7 +55,7 @@ Ie. http://localhost:8080
 | `client` |  react app for the UI which consumes the data found in the API |
 | `redis` | tmp store for scheduled jobs  |
 | `postgres` | main persistence DB for storing topics and tweet data |
-| `sidekiq`  | background process worker service that run fetching/pruning jobs |
+| `sidekiq`  | background process worker service. runs fetching/pruning jobs |
 | `nginx` | directs requests to the appropriate service |
 
 ## Testing
