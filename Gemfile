@@ -7,12 +7,12 @@ end
 
 gem 'fast_jsonapi'
 gem 'friendly_id', '~> 5.1.0'
+gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.5'
 gem 'rubocop'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
-gem 'sqlite3'
 gem 'twitter'
 
 group :development, :test do
@@ -22,7 +22,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
 group :test do

@@ -1,9 +1,9 @@
 fetch_tweets:
   class: FetchTweetsWorker
-  every: '1m'
+  every: '3m'
   description: 'Fetches and stores tweets from topics in the system'
 
 prune_tweets:
   class: PruneTweetsWorker
-  every: '2m'
+  every: '5m'
   description: 'Prunes tweets that are not longer recent'

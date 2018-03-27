@@ -5,7 +5,10 @@ services:
   nginx:
     image: bitnami/nginx:1.12
     volumes:
-      - ./docker/templates/nginx:/bitnami/nginx/conf/vhosts
+      - ./docker/templates/nginx/nginx.conf:/bitnami/nginx/conf/vhosts/nginx.conf:ro
+    depends_on:
+      - api
+      - client
     environment:
       - VIRTUAL_PORT=8080
     ports:
@@ -15,14 +18,26 @@ services:
     build: .
     command: bundle exec puma -C config/puma.rb
     entrypoint: ./docker/entrypoints/api.sh
+    depends_on:
+      - postgres
+      - redis
     volumes:
       - bundle_cache:/bundle
       - .:/home/api
-      - sqlite:/db
     env_file:
       - '.env'
     stdin_open: true
     tty: true
+
+  postgres:
+    image: 'postgres:9.6-alpine'
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'supersecret'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
 
   redis:
     image: 'redis:3.2-alpine'
@@ -52,6 +67,7 @@ services:
       - '.env'
 
 volumes:
-  sqlite:
+  postgres:
   bundle_cache:
   redis:
+

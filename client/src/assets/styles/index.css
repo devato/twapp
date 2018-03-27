@@ -6,3 +6,15 @@ h1.app__heading {
   margin-top: 1em;
 }
 
+.tweets-wrapper .ui.list .item .content .header{
+  margin-bottom: .6em;
+}
+
+.tweets-wrapper .ui.list .item .content {
+  font-size: 1.2em;
+}
+
+.tweets-wrapper .ui.list .item .content .description{
+  margin: .4em 0;
+  font-size: .9em;
+}

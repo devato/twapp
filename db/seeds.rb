@@ -9,3 +9,6 @@
 Topic.where({ name: 'Healthcare', active: true }).first_or_create
 Topic.where({ name: 'Nasa', active: true }).first_or_create
 Topic.where({ name: 'Open Source', active: true }).first_or_create
+
+# Queue the tweet fetcher
+FetchTweetsWorker.perform_async
