@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Tweets from './components/Tweets';
 import NoMatch from './components/NoMatch';
 
-import { Route, Switch, Redirect, NavLink } from "react-router-dom";
+import { Route, Switch, NavLink } from "react-router-dom";
 
 class App extends React.Component {
 

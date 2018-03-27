@@ -4,9 +4,10 @@ RSpec.describe 'API List Tweets', type: :request do
   describe 'GET /api/tweets' do
     subject(:hit_api) { get '/api/tweets/' }
 
-    it 'should have 422' do
+    it 'should have ok status' do
       hit_api
-      expect(response).to have_http_status :unprocessable_entity
+      expect(response).to have_http_status :ok
+
     end
   end
 
@@ -14,9 +15,9 @@ RSpec.describe 'API List Tweets', type: :request do
     context 'when tweet topic not found' do
       subject(:hit_api) { get '/api/tweets/test' }
 
-      it 'should have 422' do
+      it 'should have ok status' do
         hit_api
-        expect(response).to have_http_status :unprocessable_entity
+        expect(response).to have_http_status :ok
       end
     end
 
