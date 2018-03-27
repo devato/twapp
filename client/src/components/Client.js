@@ -3,7 +3,6 @@ function getTopics(cb) {
   return fetch('api/topics', {
     accept: "application/json"
   })
-    .then(checkStatus)
     .then(parseJSON)
     .then(cb);
 }
@@ -12,7 +11,6 @@ function getTweets(topicSlug, cb) {
   return fetch(`api/tweets/${topicSlug}`, {
     accept: "application/json"
   })
-    .then(checkStatus)
     .then(parseJSON)
     .then(cb);
 }

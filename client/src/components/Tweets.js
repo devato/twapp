@@ -2,6 +2,7 @@ import React from "react";
 import Loading from './Loading';
 import { Segment, List } from 'semantic-ui-react';
 import Client from './Client';
+import NoMatch from './NoMatch';
 
 class Tweets extends React.Component {
 
@@ -32,6 +33,11 @@ class Tweets extends React.Component {
 
   render() {
     const { loading, tweets } = this.state;
+
+    if (tweets.type === 'api_error') {
+      return <NoMatch />
+    }
+
     return (
       <div>
         {loading ? (

@@ -9,7 +9,6 @@ class Api::TweetsController < Api::BaseController
   private
 
   def setup_filter
-    Rails.logger.info(params)
     raise ApiErrors::MissingParamError::TopicIdMissing unless params[:topic_id].present?
     unless @topic = Topic.find_by(slug: params[:topic_id])
       raise ApiErrors::NotFoundError::TopicNotFound
