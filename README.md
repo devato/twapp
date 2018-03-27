@@ -34,10 +34,13 @@ TWITTER_SECRET_TOKEN=123
 ```
 $ docker-compose up --build
 ```
-This will take a few minutes, but once you see `You can now view client in the browser.` from the `client_1` service, you're ready to test the app in the browser:
+This will take a few minutes, but it will create the db, migrate and seed it so it's ready to run.  
+
+Once you see `You can now view client in the browser.` from the `client_1` service, you're ready to test the app in the browser:
 
 ```
 Go to your localhost or docker machine IP at port: 8080
+Ie. http://localhost:8080
 ```
 
 # Services
@@ -49,3 +52,20 @@ Go to your localhost or docker machine IP at port: 8080
 | `redis` | tmp store for scheduled jobs  |
 | `postgres` | main persistence DB for storing topics and tweet data |
 | `sidekiq`  | background process worker service that run fetching/pruning jobs |
+| `nginx` | directs requests to the appropriate service |
+
+# Testing
+
+To test the Rails api there are some wrapper scripts in the `docker/` directory:
+
+```
+$ docker/test
+```
+
+Testing is the same on the client:
+
+```
+$ cd client
+$ docker/test
+```
+
