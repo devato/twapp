@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PruneTweetsWorker, type: :worker do
-
   subject(:worker) { described_class.perform_async }
 
   describe '.perform' do

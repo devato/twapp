@@ -1,5 +1,4 @@
 class FetchTweets
-
   include BaseService
 
   def initialize
@@ -22,9 +21,8 @@ class FetchTweets
       end
     end
     OpenStruct.new(success?: true, new_tweets: @new_tweets, error: nil)
-  rescue => e
+  rescue StandardError => e
     log_msg(e, :error)
     OpenStruct.new(success?: false, error: e.message)
   end
-
 end

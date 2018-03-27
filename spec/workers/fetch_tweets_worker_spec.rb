@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe FetchTweetsWorker, type: :worker do
-
   subject(:worker) { described_class.perform_async }
 
   describe '.perform' do

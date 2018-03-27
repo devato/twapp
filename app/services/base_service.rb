@@ -1,12 +1,10 @@
 module BaseService
-
   extend ActiveSupport::Concern
 
   class_methods do
     def call(*args)
       new(*args).call
     end
-
   end
 
   def log_msg(msg, level = :debug)

@@ -1,7 +1,7 @@
 class PruneTweetsWorker
   include Sidekiq::Worker
 
-  def perform(*args)
+  def perform(*_args)
     PruneTweets.call
   end
 end

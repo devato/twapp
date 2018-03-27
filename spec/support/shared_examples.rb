@@ -1,5 +1,4 @@
 shared_examples_for :twitter_response do |num|
-
   def build_tweet(opts = {})
     OpenStruct.new(id: opts.fetch(:id, FFaker::SSNSE.ssn),
                    text: opts.fetch(:text, FFaker::Tweet.body),

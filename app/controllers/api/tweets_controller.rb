@@ -1,7 +1,5 @@
 class Api::TweetsController < Api::BaseController
-
   before_action :setup_filter, only: [:list]
-
 
   def list
     @tweets = Tweet.latest_for_topic(@topic)
@@ -12,11 +10,10 @@ class Api::TweetsController < Api::BaseController
 
   def setup_filter
     Rails.logger.info(params)
-    raise ApiErrors::MissingParamError::TopicIdMissing.new unless params[:topic_id].present?
+    raise ApiErrors::MissingParamError::TopicIdMissing unless params[:topic_id].present?
     unless @topic = Topic.find_by(slug: params[:topic_id])
-      raise ApiErrors::NotFoundError::TopicNotFound.new
+      raise ApiErrors::NotFoundError::TopicNotFound
     end
     @limit = params[:limit] || 10
   end
-
 end

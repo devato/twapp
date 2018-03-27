@@ -1,13 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe FetchTweets, type: :service do
-
   subject(:fetch) { described_class.call }
 
   describe '#call' do
-
     context 'when topics available' do
-
       before do
         allow(Topic).to receive(:all).and_return([Topic.new(name: 'milk')])
       end
@@ -22,11 +19,10 @@ RSpec.describe FetchTweets, type: :service do
       end
 
       context 'creating fresh tweets' do
-
         include_examples :twitter_response, '3'
 
         it 'should create given number of tweets' do
-          expect{ fetch }.to change{Tweet.count}.by(3)
+          expect { fetch }.to change { Tweet.count }.by(3)
         end
 
         context 'when tweet exists' do
@@ -34,17 +30,15 @@ RSpec.describe FetchTweets, type: :service do
 
           before do
             allow(TWITTER_REST_CLIENT).to receive(:search).and_return(
-              [build_tweet({id: 123123})]
+              [build_tweet(id: 123_123)]
             )
           end
 
           it 'should not create duplicate tweets' do
-            expect{ fetch }.not_to change{Tweet.count}
+            expect { fetch }.not_to change { Tweet.count }
           end
         end
-
       end
-
     end
 
     context 'when no topics available' do
@@ -53,6 +47,5 @@ RSpec.describe FetchTweets, type: :service do
         fetch
       end
     end
-
   end
 end

@@ -1,7 +1,6 @@
 class Topic < ApplicationRecord
-
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :name, use: %i[slugged finders]
 
   has_many :tweets
 

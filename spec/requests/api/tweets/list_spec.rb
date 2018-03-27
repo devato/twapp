@@ -1,7 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe 'API List Tweets', type: :request do
-
   describe 'GET /api/tweets' do
     subject(:hit_api) { get '/api/tweets/' }
 
@@ -9,11 +8,9 @@ RSpec.describe 'API List Tweets', type: :request do
       hit_api
       expect(response).to have_http_status :unprocessable_entity
     end
-
   end
 
   describe 'GET /api/tweets/:topic_id' do
-
     context 'when tweet topic not found' do
       subject(:hit_api) { get '/api/tweets/test' }
 
@@ -43,5 +40,4 @@ RSpec.describe 'API List Tweets', type: :request do
       end
     end
   end
-
 end
