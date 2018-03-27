@@ -1,6 +1,6 @@
 # Twitter React/Rails
 
-Rails app with a React frontend in the `/client` directory.
+Rails app with a React frontend in the `/client` directory. @tmartin314
 
 https://twapp.staig.me
 
