@@ -1,5 +1,4 @@
 #!/bin/bash
-# Interpreter identifier
 
 # Exit on fail
 set -e
