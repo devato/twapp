@@ -1,5 +1,7 @@
 # Twitter React/Rails
 
+Rails app with a React frontend in the `/client` directory.
+
 https://twapp.staig.me
 
 ## Setup
