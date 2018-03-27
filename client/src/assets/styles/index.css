@@ -1,12 +1,17 @@
-.app {
-
+.home-wrapper p {
+  font-size: 1.2em;
+  min-height: 6em;
 }
 
 h1.app__heading {
   margin-top: 1em;
 }
 
-.tweets-wrapper .ui.list .item .content .header{
+.topic-menu .item {
+  font-size: 1.1em;
+}
+
+.tweets-wrapper .ui.list .item .content .header {
   margin-bottom: .6em;
 }
 
