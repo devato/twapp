@@ -54,7 +54,7 @@ class Tweets extends React.Component {
                     <List.Content>
                       <List.Header>@{tweet.attributes.username}</List.Header>
                       {tweet.attributes.full_text}
-                      <List.Description>Updated {tweet.attributes.tweeted_at}</List.Description>
+                      <List.Description>{tweet.attributes.tweeted_at}</List.Description>
                     </List.Content>
                   </List.Item>
                 )
