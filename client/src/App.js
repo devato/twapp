@@ -5,22 +5,21 @@ import TopicSelect from './components/TopicSelect';
 import Home from './components/Home';
 import Tweets from './components/Tweets';
 
-import { Route } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 
 class App extends React.Component {
 
   state = {
-    selectedTopic: '',
     tweetsList: [],
     topics: [],
-    loading: true
+    topicsLoading: true,
   }
 
   componentDidMount() {
     Client.getTopics(results => {
       this.setState({
         topics: this.buildTopics(results.data),
-        loading: false
+        topicsLoading: false
       })
     })
   }
@@ -38,15 +37,17 @@ class App extends React.Component {
 
   render() {
 
-    const { loading, topics } = this.state;
+    const { topicsLoading, topics } = this.state;
 
     return (
       <div className="app">
         <div className="ui container app__container">
-          <h1 className="app__heading">TweetBeat</h1>
+          <h1 className="app__heading">
+            <NavLink to="/">TweetBeat</NavLink>
+          </h1>
           <div className="ui grid">
             <div className="four wide column">
-              <TopicSelect loading={loading} topics={topics} />
+              <TopicSelect topicsLoading={topicsLoading} topics={topics} />
             </div>
             <div className="twelve wide column">
               <Route exact path="/" component={Home} />

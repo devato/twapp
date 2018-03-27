@@ -4,7 +4,7 @@ class Api::TweetsController < Api::BaseController
 
 
   def list
-    @tweets = Tweet.where(topic: @topic).order(created_at: :desc).limit(10)
+    @tweets = Tweet.latest_for_topic(@topic)
     render json: TweetSerializer.new(@tweets), status: :ok
   end
 

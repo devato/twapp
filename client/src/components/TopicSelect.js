@@ -2,8 +2,8 @@ import React from "react";
 import { Segment } from 'semantic-ui-react';
 import { NavLink } from "react-router-dom";
 
-const TopicSelect = ({ match, loading, topics, onClick}) => (
-  <Segment color="grey" loading={loading}>
+const TopicSelect = ({ match, topicsLoading, topics, onClick}) => (
+  <Segment color="grey" loading={topicsLoading}>
     <h4>Choose a Topic</h4>
     <div className="ui secondary vertical menu">
       {topics.map((topic, i) => {
