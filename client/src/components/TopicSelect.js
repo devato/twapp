@@ -1,39 +1,16 @@
 import React from "react";
-import Client from "./Client";
-import { Dropdown } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react';
+import { NavLink } from "react-router-dom";
 
-const MATCHING_ITEM_LIMIT = 3;
-
-class TopicSelect extends React.Component {
-  state = {
-    topics: [],
-    isLoading: true,
-  };
-
-  componentDidMount() {
-    Client.getTopics(result => {
-      this.setState({
-        topics: this.setTopics(result.data),
-        isLoading: false
-      })
-    });
-  }
-
-  setTopics(data) {
-    const options = data.map((topic,i) => {
-      return {key: i, text: topic.attributes.name, value: topic.attributes.slug }
-    })
-    return options;
-  }
-
-  render() {
-    const { topics, isLoading } = this.state;
-    return (
-      <div id="topic-search">
-        <Dropdown rel="topicSelect" text="select" selection options={topics} loading={isLoading} />
-      </div>
-    );
-  }
-}
+const TopicSelect = ({ match, loading, topics, onClick}) => (
+  <Segment color="grey" loading={loading}>
+    <h4>Choose a Topic</h4>
+    <div className="ui secondary vertical menu">
+      {topics.map((topic, i) => {
+        return <NavLink to={`/${topic.value}`} className="item" key={i} activeClassName="active">{topic.name}</NavLink>
+      })}
+    </div>
+  </Segment>
+)
 
 export default TopicSelect;

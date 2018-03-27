@@ -1,33 +1,56 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './assets/styles/index.css';
-import Loading from './components/Loading';
+import Client from './components/Client';
 import TopicSelect from './components/TopicSelect';
-import { Segment } from 'semantic-ui-react';
+import Home from './components/Home';
+import Tweets from './components/Tweets';
 
-class App extends Component {
+import { Route } from "react-router-dom";
+
+class App extends React.Component {
 
   state = {
     selectedTopic: '',
-    tweetsList: []
+    tweetsList: [],
+    topics: [],
+    loading: true
+  }
+
+  componentDidMount() {
+    Client.getTopics(results => {
+      this.setState({
+        topics: this.buildTopics(results.data),
+        loading: false
+      })
+    })
+  }
+
+  buildTopics(data) {
+    const options = data.map((topic, i) => {
+      return {
+        key: i,
+        name: topic.attributes.name,
+        value: topic.attributes.slug,
+      }
+    })
+    return options;
   }
 
   render() {
+
+    const { loading, topics } = this.state;
+
     return (
       <div className="app">
         <div className="ui container app__container">
           <h1 className="app__heading">TweetBeat</h1>
           <div className="ui grid">
             <div className="four wide column">
-              <Segment color="grey">
-                <h4>Choose a Topic</h4>
-                <TopicSelect onSelect={this.showTweets} />
-              </Segment>
+              <TopicSelect loading={loading} topics={topics} />
             </div>
             <div className="twelve wide column">
-              <Segment color="grey">
-                <h3>Recent Tweets</h3>
-                <p>Select a topic to see the most recent tweets.</p>
-              </Segment>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/:topicId" component={Tweets} />
             </div>
           </div>
         </div>
