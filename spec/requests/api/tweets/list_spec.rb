@@ -7,7 +7,6 @@ RSpec.describe 'API List Tweets', type: :request do
     it 'should have ok status' do
       hit_api
       expect(response).to have_http_status :ok
-
     end
   end
 

@@ -4,5 +4,13 @@ AllCops:
     - db/**
     - config/**
     - script/**
+    - client/**
+    - spec/**
 Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 99
+
+Metrics/BlockLength:
   Enabled: false
