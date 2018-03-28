@@ -17,11 +17,10 @@ $ cd twapp
 cp .env.example .env && cp client/.env.example client/.env
 ```
 
-### Optional: Create a twitter app for pinging the API:
+### Create a twitter app for pinging the API:
 
-Because this project is private, I've left my creds in the `.env.example` to make it easier
+You can create an app here:
 
-If you would like to create your own:
 https://apps.twitter.com/
 
 Then add your twitter app credentials to `.env`:
@@ -38,7 +37,7 @@ TWITTER_SECRET_TOKEN=123
 ```
 $ docker-compose up --build
 ```
-This will take a few minutes, but it will create the db, migrate and seed it so it's ready to run.  
+This will take a few minutes, but it will create the db, migrate and seed it so it's ready to run.
 
 Once you see `You can now view client in the browser.` from the `client_1` service, you're ready to test the app in the browser:
 
