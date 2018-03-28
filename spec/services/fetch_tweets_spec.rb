@@ -30,7 +30,7 @@ RSpec.describe FetchTweets, type: :service do
 
           before do
             allow(TWITTER_REST_CLIENT).to receive(:search).and_return(
-              [build_tweet(id: 123_123)]
+              [build_tweet(id: 123123)]
             )
           end
 
