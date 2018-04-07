@@ -4,7 +4,8 @@ shared_examples_for :twitter_response do |num|
                    text: opts.fetch(:text, FFaker::Tweet.body),
                    user: OpenStruct.new(screen_name: FFaker::Internet.user_name),
                    text?: opts.fetch(:text_present, true),
-                   user?: opts.fetch(:user_present, true))
+                   user?: opts.fetch(:user_present, true),
+                   uri: OpenStruct.new(path: opts.fetch(:path, '/user/123123')))
   end
 
   def build_tweets(num = 3)
