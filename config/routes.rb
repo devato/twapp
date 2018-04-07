@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get ':topic_id' => 'tweets#list', as: :list
         get '/' => 'tweets#list', as: :no_topic_list
         get ':topic_id/limit/:limit' => 'tweets#list', as: :limit_list
+        post :tweet
       end
     end
   end

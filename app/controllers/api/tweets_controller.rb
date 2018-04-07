@@ -6,6 +6,15 @@ class Api::TweetsController < Api::BaseController
     render json: TweetSerializer.new(@tweets), status: :ok
   end
 
+  def tweet
+    service = TweetService.new(params[:text]).call
+    if service.success?
+      render json: service.data.to_json, status: :ok
+    else
+      raise ApiErrors::TweetError
+    end
+  end
+
   private
 
   def setup_filter

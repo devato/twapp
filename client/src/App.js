@@ -5,6 +5,7 @@ import TopicSelect from './components/TopicSelect';
 import Home from './components/Home';
 import Tweets from './components/Tweets';
 import NoMatch from './components/NoMatch';
+import TweetForm from './components/TweetForm';
 
 import { Route, Switch, NavLink } from "react-router-dom";
 
@@ -50,6 +51,7 @@ class App extends React.Component {
               <TopicSelect topicsLoading={topicsLoading} topics={topics} />
             </div>
             <div className="twelve wide column">
+              <TweetForm />
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/:topicId" component={Tweets} />

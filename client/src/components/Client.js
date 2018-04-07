@@ -1,3 +1,4 @@
+
 /* eslint-disable no-undef */
 function getTopics(cb) {
   return fetch('api/topics', {
@@ -11,6 +12,22 @@ function getTopics(cb) {
 function getTweets(topicSlug, cb) {
   return fetch(`api/tweets/${topicSlug}`, {
     accept: "application/json"
+  })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
+}
+
+function postTweet(text, cb) {
+  var headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  };
+  return fetch(`api/tweets/tweet`, {
+    accept: "application/json",
+    headers: headers,
+    method: 'post',
+    body: JSON.stringify({text: text})
   })
     .then(checkStatus)
     .then(parseJSON)
@@ -32,5 +49,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { getTopics, getTweets };
+const Client = { getTopics, getTweets, postTweet };
 export default Client;
